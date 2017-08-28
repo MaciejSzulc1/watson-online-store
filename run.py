@@ -28,7 +28,7 @@ from watsononlinestore.watson_online_store import WatsonOnlineStore
 
 
 MISSING_ENV_VARS = "ERROR: Required environment variables are not set."
-MISSING_ENV_FILE = "ERROR: Could not load settings from .env"
+
 
 
 
@@ -108,6 +108,11 @@ class WatsonEnv:
         discovery_password = os.environ.get('DISCOVERY_PASSWORD')
         slack_bot_token = os.environ.get('SLACK_BOT_TOKEN')
         slack_client = os.environ.get('SLACK_BOT_USER')
+        
+        print "Slack bot token is:" + slack_bot_token
+        print "Slack client    is:" + slack_client
+        print "Bot id          is:" + bot_id
+        
 
         if not all((conversation_username,
                     conversation_password,
@@ -117,7 +122,7 @@ class WatsonEnv:
                     discovery_username,
                     discovery_password)):
             # If some of the service env vars are not set get them from VCAP
-            print(MISSING_ENV_FILE)
+            print "I could not load all settings from .env file!"
             vcap_env = None
             vcap_services = os.environ.get("VCAP_SERVICES")
             if vcap_services:
@@ -159,12 +164,14 @@ class WatsonEnv:
             return None
 
         # Instantiate Watson Conversation client.
+        print "Instantiate Watson Conversation client"
         conversation_client = ConversationV1(
             username=conversation_username,
             password=conversation_password,
             version='2016-07-11')
 
         # Instantiate Cloudant DB.
+        print "Instantiate Cloudant DB"
         cloudant_online_store = CloudantOnlineStore(
             Cloudant(
                 cloudant_username,
@@ -176,12 +183,14 @@ class WatsonEnv:
         )
 
         # Instantiate Watson Discovery client.
+        print "Instantiate Watson Discovery client"
         discovery_client = DiscoveryV1(
             version='2017-07-19',
             username=discovery_username,
             password=discovery_password)
 
         # Instantiate Slack chatbot.
+        print "Instantiate Slack chatbot"
         if 'placeholder' in slack_bot_token:
             raise Exception("SLACK_BOT_TOKEN needs to be set correctly. "
                             "It is currently set to 'placeholder'.")
