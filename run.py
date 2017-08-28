@@ -78,6 +78,9 @@ class WatsonEnv:
         stat = os.stat(os.path.join(os.path.dirname(__file__), ".env"))
         print "Using the file named: "+os.path.join(os.path.dirname(__file__), ".env")
         print stat 
+        f = open(os.path.join(os.path.dirname(__file__), ".env"), 'r')
+        print f.read()
+        f.close()
         # Use these env vars first if set
         bot_id = os.environ.get("BOT_ID")
         slack_bot_token = os.environ.get('SLACK_BOT_TOKEN')
