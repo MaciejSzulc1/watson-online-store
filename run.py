@@ -28,6 +28,8 @@ from watsononlinestore.watson_online_store import WatsonOnlineStore
 
 
 MISSING_ENV_VARS = "ERROR: Required environment variables are not set."
+MISSING_ENV_FILE = "ERROR: Could not load settings from .env"
+
 
 
 class WatsonEnv:
@@ -94,6 +96,7 @@ class WatsonEnv:
                     discovery_username,
                     discovery_password)):
             # If some of the service env vars are not set get them from VCAP
+            print(MISSING_ENV_FILE)
             vcap_env = None
             vcap_services = os.environ.get("VCAP_SERVICES")
             if vcap_services:
