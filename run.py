@@ -54,6 +54,7 @@ class WatsonEnv:
         SLACK_BOT_USER (familiar bot name) and look-up the ID.
         This should be called after env is loaded when using dotenv.
         """
+        print "get_slack_user_id"
         print "+++SLACK get Environment"
         for a in os.environ:
             print('   ', a, '->', os.getenv(a))
@@ -102,6 +103,8 @@ class WatsonEnv:
         cloudant_db_name = os.environ.get("CLOUDANT_DB_NAME")
         discovery_username = os.environ.get('DISCOVERY_USERNAME')
         discovery_password = os.environ.get('DISCOVERY_PASSWORD')
+        slack_bot_token = os.environ.get('SLACK_BOT_TOKEN')
+        slack_client = os.environ.get('SLACK_BOT_USER')
 
         if not all((conversation_username,
                     conversation_password,
