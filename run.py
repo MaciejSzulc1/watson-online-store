@@ -81,13 +81,12 @@ class WatsonEnv:
     def get_watson_online_store():
         print "get_watson_online_store starts."
         print " "
-        print ".env content at start ---------------"
-        f = open(os.path.join(os.path.dirname(__file__), ".env"), 'r')
-        print f.read()
-        f.close()
-        print ".env content at start ---------------"
+        print "Environment at start ---------------"
+        for a in os.environ:
+            print('  ', a, '->', os.getenv(a))
+        print "------------------------------------"
         print " "
-        del os.environ['SLACK_BOT_USER']
+        del os.environ['SLACK_BOT_TOKEN']
         load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
         stat = os.stat(os.path.join(os.path.dirname(__file__), ".env"))
         print "Using the file named: "+os.path.join(os.path.dirname(__file__), ".env")
