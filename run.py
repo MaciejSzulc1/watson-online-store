@@ -76,8 +76,8 @@ class WatsonEnv:
     def get_watson_online_store():
         load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
         stat = os.stat(os.path.join(os.path.dirname(__file__), ".env"))
-        print "Using .env file dated:"+stat
         print "Using the file named: "+os.path.join(os.path.dirname(__file__), ".env")
+        print stat 
         # Use these env vars first if set
         bot_id = os.environ.get("BOT_ID")
         slack_bot_token = os.environ.get('SLACK_BOT_TOKEN')
