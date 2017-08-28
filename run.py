@@ -87,6 +87,7 @@ class WatsonEnv:
         print "------------------------------------"
         print " "
         del os.environ['SLACK_BOT_TOKEN']
+        del os.environ['SLACK_BOT_USER']
         load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
         stat = os.stat(os.path.join(os.path.dirname(__file__), ".env"))
         print "Using the file named: "+os.path.join(os.path.dirname(__file__), ".env")
@@ -116,9 +117,12 @@ class WatsonEnv:
         slack_bot_token = os.environ.get('SLACK_BOT_TOKEN')
         slack_client = os.environ.get('SLACK_BOT_USER')
         
-        print "Slack bot token is:" + slack_bot_token
-        print "Slack client    is:" + slack_client
-        print "Bot id          is:" + bot_id
+        print "Slack bot token is:" 
+        print slack_bot_token
+        print "Slack client    is:"
+        print slack_client
+        print "Bot id          is:"
+        print bot_id
         
 
         if not all((conversation_username,
