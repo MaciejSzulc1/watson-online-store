@@ -54,6 +54,10 @@ class WatsonEnv:
         SLACK_BOT_USER (familiar bot name) and look-up the ID.
         This should be called after env is loaded when using dotenv.
         """
+        print "+++SLACK get Environment"
+        for a in os.environ:
+            print('   ', a, '->', os.getenv(a))
+        print "+++Slack get Environment"
         slack_bot_user = os.environ.get('SLACK_BOT_USER')
         print("Looking up BOT_ID for '%s'" % slack_bot_user)
 
@@ -85,7 +89,7 @@ class WatsonEnv:
         print "---Content"
         print "+++Environment"
         for a in os.environ:
-            print('Var: ', a, 'Value: ', os.getenv(a))
+            print('  ', a, '->', os.getenv(a))
         print "+++Environment"
         # Use these env vars first if set
         bot_id = os.environ.get("BOT_ID")
