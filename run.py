@@ -79,19 +79,22 @@ class WatsonEnv:
 
     @staticmethod
     def get_watson_online_store():
+        print "get_watson_online_store starts."
         load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
         stat = os.stat(os.path.join(os.path.dirname(__file__), ".env"))
         print "Using the file named: "+os.path.join(os.path.dirname(__file__), ".env")
-        print stat 
-        print "---Content"
+        print " "
+        print ".env content ---------------"
         f = open(os.path.join(os.path.dirname(__file__), ".env"), 'r')
         print f.read()
         f.close()
-        print "---Content"
+        print ".env content ---------------"
+        print " "
         print "+++Environment"
         for a in os.environ:
             print('  ', a, '->', os.getenv(a))
         print "+++Environment"
+        print " "
         # Use these env vars first if set
         bot_id = os.environ.get("BOT_ID")
         slack_bot_token = os.environ.get('SLACK_BOT_TOKEN')
